@@ -5,23 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>QR কার্ড — Finroxa Gloves</title>
   <link rel="stylesheet" href="/css/style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-        .download-btn {
-      margin-top: 10px;
-      padding: 8px 16px;
-      background: #0d6efd;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.15s;
-    }
-    .download-btn:active {
-      transform: scale(0.95);
-    }
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     body { background: #f0f2f5; }
     .topbar { background: #0d6efd; color: #fff; padding: 14px; display: flex; justify-content: space-between; align-items: center; }
@@ -30,12 +14,14 @@
     .container { padding: 16px; max-width: 900px; margin: 0 auto; }
     .info-box { background: #fff8e1; border-left: 4px solid #ffc107; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; font-size: 14px; color: #5a4a00; }
     .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .worker-card-print { background: white; border: 2px dashed #999; border-radius: 12px; padding: 18px; text-align: center; page-break-inside: avoid; }
+    .worker-card-print { background: white; border: 2px dashed #999; border-radius: 12px; padding: 18px; text-align: center; }
     .worker-card-print .factory { font-size: 11px; color: #0d6efd; margin-bottom: 10px; font-weight: 700; letter-spacing: 0.5px; }
     .worker-card-print .qr-box { background: white; padding: 6px; display: inline-block; margin-bottom: 10px; }
-    .worker-card-print .qr-box canvas { display: block; }
+    .worker-card-print .qr-box canvas, .worker-card-print .qr-box img { display: block; }
     .worker-card-print .name { font-size: 18px; font-weight: 700; margin-bottom: 4px; color: #1a1a1a; }
     .worker-card-print .code { font-size: 14px; color: #495057; font-family: monospace; background: #f1f3f5; padding: 4px 10px; border-radius: 6px; display: inline-block; font-weight: 600; letter-spacing: 1px; }
+    .download-btn { margin-top: 12px; padding: 10px 18px; background: #0d6efd; color: #fff; border: none; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+    .download-btn:active { transform: scale(0.95); }
     .empty { text-align: center; color: #6c757d; padding: 40px; background: #fff; border-radius: 14px; }
     @media print {
       body { background: #fff; }
