@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ড্যাশবোর্ড — Finroxa Gloves</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .topbar {
+      background: #0d6efd; color: #fff;
+      padding: 14px 16px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .topbar h2 { margin: 0; font-size: 17px; }
+    .topbar button {
+      background: rgba(255,255,255,.2); color: #fff;
+      border: none; padding: 6px 12px; border-radius: 8px;
+      font-family: inherit; cursor: pointer;
+    }
+    .container { padding: 16px; max-width: 720px; margin: 0 auto; }
+    .card {
+      background: #fff; border-radius: 14px;
+      padding: 18px; margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .card h3 { margin: 0 0 6px; font-size: 15px; color: #6c757d; font-weight: 500; }
+    .card .big { font-size: 28px; font-weight: 700; color: #0d6efd; }
+    #userName { font-weight: 600; }
+    
+    /* নতুন - মেনু বাটন */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .menu-btn {
+      display: block;
+      padding: 20px 16px;
+      background: #fff;
+      border-radius: 14px;
+      text-decoration: none;
+      color: #1a1a1a;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: transform 0.15s;
+    }
+    .menu-btn:active { transform: scale(0.97); }
+    .menu-btn .icon { font-size: 32px; display: block; margin-bottom: 8px; }
+    .menu-btn .label { font-weight: 600; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <h2>Finroxa Gloves</h2>
+    <button id="logoutBtn">লগআউট</button>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h3>স্বাগতম</h3>
+      <p id="userName">লোড হচ্ছে...</p>
+    </div>
+
+    <div class="card">
+      <h3>মোট কর্মী</h3>
+      <div class="big" id="workerCount">—</div>
+    </div>
+
+    <div class="card">
+      <h3>আজকের pair</h3>
+      <div class="big" id="todayPairs">—</div>
+    </div>
+
+    <!-- ⬇️ নতুন মেনু বাটন ⬇️ -->
+    <div class="menu-grid">
+      <a href="/workers.html" class="menu-btn">
+        <span class="icon">👷</span>
+        <span class="label">কর্মী</span>
+      </a>
+      <a href="/entry.html" class="menu-btn">
+        <span class="icon">📝</span>
+        <span class="label">দ্রুত এন্ট্রি</span>
+      </a>
+            <a href="/advance.html" class="menu-btn">
+        <span class="icon">💸</span>
+        <span class="label">অ্যাডভান্স</span>
+      </a>
+      <a href="/settlement.html" class="menu-btn">
+        <span class="icon">💰</span>
+        <span class="label">সেটেলমেন্ট</span>
+      </a>
+            <a href="/qr-cards.html" class="menu-btn">
+        <span class="icon">🎴</span>
+        <span class="label">QR কার্ড</span>
+      </a>
+            <a href="/settings.html" class="menu-btn">
+        <span class="icon">⚙️</span>
+        <span class="label">সেটিংস</span>
+      </a>
+    </div>
+  </div>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

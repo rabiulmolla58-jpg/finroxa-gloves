@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>সেটেলমেন্ট — Finroxa Gloves</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .topbar { background: #0d6efd; color: #fff; padding: 14px; display: flex; justify-content: space-between; align-items: center; }
+    .topbar a { color: #fff; text-decoration: none; font-size: 14px; margin-right: 15px; }
+    .container { padding: 16px; max-width: 800px; margin: 0 auto; }
+    .card { background: #fff; border-radius: 14px; padding: 18px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .week-info { background: #e7f1ff; padding: 12px; border-radius: 10px; margin-bottom: 14px; font-size: 15px; text-align: center; }
+    .week-info strong { color: #0d6efd; }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .summary-box {
+      background: #f8f9fa;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .summary-box .label { font-size: 12px; color: #6c757d; margin-bottom: 4px; }
+    .summary-box .value { font-size: 20px; font-weight: 700; color: #0d6efd; }
+
+    .worker-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1.2fr;
+      gap: 8px;
+      padding: 12px 8px;
+      border-bottom: 1px solid #eee;
+      align-items: center;
+      font-size: 14px;
+    }
+    .worker-row.header {
+      background: #f0f4f8;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #495057;
+      border-bottom: none;
+    }
+    .worker-row:last-child { border-bottom: none; }
+    .worker-row .name { font-weight: 600; }
+    .worker-row .net { color: #198754; font-weight: 700; font-size: 15px; }
+
+    .btn { padding: 14px; border: none; border-radius: 10px; font-family: inherit; cursor: pointer; font-size: 16px; font-weight: 600; width: 100%; margin-top: 8px; }
+    .btn-approve { background: #198754; color: #fff; }
+    .btn-primary { background: #0d6efd; color: #fff; }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .empty { text-align: center; color: #6c757d; padding: 30px 10px; }
+    .empty .icon { font-size: 48px; display: block; margin-bottom: 10px; }
+
+    @media (max-width: 600px) {
+      .worker-row { grid-template-columns: 1.5fr 1fr 1fr; font-size: 13px; }
+      .worker-row .hide-mobile { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div>
+      <a href="/app.html">← হোম</a>
+      <strong>সাপ্তাহিক সেটেলমেন্ট</strong>
+    </div>
+    <a href="#" id="logoutBtn">লগআউট</a>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <div class="week-info">
+        সপ্তাহ: <strong id="weekRange">লোড হচ্ছে...</strong>
+      </div>
+
+      <div class="summary-grid">
+        <div class="summary-box">
+          <div class="label">মোট pair</div>
+          <div class="value" id="totalPairs">0</div>
+        </div>
+        <div class="summary-box">
+          <div class="label">মোট টাকা</div>
+          <div class="value" id="totalGross">৳0</div>
+        </div>
+        <div class="summary-box">
+          <div class="label">নিট পেমেন্ট</div>
+          <div class="value" id="totalNet" style="color:#198754;">৳0</div>
+        </div>
+      </div>
+
+            <div class="worker-row header">
+        <div>কর্মী</div>
+        <div>pair</div>
+        <div class="hide-mobile">মোট</div>
+        <div class="hide-mobile">অ্যাডভান্স</div>
+        <div>নিট</div>
+      </div>
+
+      <div id="workerList">
+        <p class="empty">লোড হচ্ছে...</p>
+      </div>
+
+      <button class="btn btn-approve" id="approveBtn" style="display:none;">
+        ✅ সেটেলমেন্ট Approve করুন
+      </button>
+            <button class="btn btn-approve" id="approveBtn" style="display:none;">
+        ✅ সেটেলমেন্ট Approve করুন
+      </button>
+
+      <a href="/payslip.html" style="display:block; text-align:center; margin-top:14px; color:#0d6efd; text-decoration:none; font-size:15px; font-weight:600;">
+        📄 সব কর্মীর পেমেন্ট স্লিপ দেখুন →
+      </a>
+    </div>
+    </div>
+  </div>
+
+  <script type="module" src="/js/settlement.js"></script>
+</body>
+</html>

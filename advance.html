@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>অ্যাডভান্স — Finroxa Gloves</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .topbar { background: #0d6efd; color: #fff; padding: 14px; display: flex; justify-content: space-between; align-items: center; }
+    .topbar a { color: #fff; text-decoration: none; font-size: 14px; margin-right: 15px; }
+    .container { padding: 16px; max-width: 720px; margin: 0 auto; }
+    .card { background: #fff; border-radius: 14px; padding: 18px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .form-row { display: flex; gap: 10px; margin-bottom: 12px; }
+    .form-row input, .form-row select { flex: 1; padding: 14px; border: 1px solid #dce0e6; border-radius: 8px; font-family: inherit; font-size: 16px; }
+    .btn { padding: 14px; background: #dc3545; color: #fff; border: none; border-radius: 10px; font-family: inherit; cursor: pointer; width: 100%; font-size: 16px; font-weight: 600; }
+    .btn:disabled { opacity: 0.6; }
+    .advance-item { display: flex; justify-content: space-between; padding: 12px 8px; border-bottom: 1px solid #eee; font-size: 14px; }
+    .advance-item:last-child { border-bottom: none; }
+    .advance-item .amount { color: #dc3545; font-weight: 700; }
+    .advance-item .date { color: #6c757d; font-size: 12px; }
+    .summary-box { background: #fff5f5; padding: 14px; border-radius: 10px; margin-bottom: 14px; text-align: center; }
+    .summary-box .value { font-size: 24px; font-weight: 700; color: #dc3545; }
+    .empty { text-align: center; color: #6c757d; padding: 30px 10px; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div>
+      <a href="/app.html">← হোম</a>
+      <strong>অ্যাডভান্স</strong>
+    </div>
+    <a href="#" id="logoutBtn">লগআউট</a>
+  </div>
+
+  <div class="container">
+    <div class="summary-box">
+      এই সপ্তাহের মোট অ্যাডভান্স: <span class="value" id="totalAdvance">৳0</span>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">নতুন অ্যাডভান্স দিন</h3>
+
+      <div class="form-row">
+        <select id="workerSelect">
+          <option value="">-- কর্মী সিলেক্ট করুন --</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <input type="number" id="amount" placeholder="টাকার পরিমাণ" min="1" />
+      </div>
+
+      <div class="form-row">
+        <input type="text" id="reason" placeholder="কারণ (ঐচ্ছিক)" />
+      </div>
+
+      <button class="btn" id="saveBtn">💸 অ্যাডভান্স দিন</button>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">এই সপ্তাহের অ্যাডভান্স</h3>
+      <div id="advanceList">
+        <p class="empty">লোড হচ্ছে...</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/js/advance.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>লগইন — Finroxa Gloves</title>
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="logo-circle">F</div>
+      <h1>Finroxa Gloves</h1>
+      <p class="sub">কারখানা ম্যানেজমেন্ট</p>
+
+      <div id="alertBox" class="alert"></div>
+
+      <form id="loginForm">
+        <div class="field">
+          <label for="email">ইমেইল</label>
+          <input type="email" id="email" placeholder="you@example.com" required />
+        </div>
+
+        <div class="field">
+          <label for="password">পাসওয়ার্ড</label>
+          <input type="password" id="password" placeholder="••••••••" required />
+        </div>
+
+        <button type="submit" id="loginBtn" class="btn btn-primary">
+          লগইন করুন
+        </button>
+      </form>
+
+      <p class="footer-note">© ২০২৬ Finroxa</p>
+    </div>
+  </div>
+
+  <script type="module" src="/js/auth.js"></script>
+</body>
+</html>

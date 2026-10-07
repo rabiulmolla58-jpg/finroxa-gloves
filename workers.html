@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>কর্মী ব্যবস্থাপনা — Finroxa Gloves</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .topbar { background: #0d6efd; color: #fff; padding: 14px; display: flex; justify-content: space-between; align-items: center; }
+    .topbar a { color: #fff; text-decoration: none; font-size: 14px; margin-right: 15px; }
+    .container { padding: 16px; max-width: 720px; margin: 0 auto; }
+    .card { background: #fff; border-radius: 14px; padding: 18px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .form-row { display: flex; gap: 10px; margin-bottom: 10px; }
+    .form-row input { flex: 1; padding: 12px; border: 1px solid #dce0e6; border-radius: 8px; font-family: inherit; font-size: 15px; }
+    .btn { padding: 12px; background: #0d6efd; color: #fff; border: none; border-radius: 8px; font-family: inherit; cursor: pointer; width: 100%; font-size: 16px; font-weight: 600; }
+    .btn:disabled { opacity: 0.5; }
+
+    .worker-card {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px; border-bottom: 1px solid #eee; gap: 8px;
+    }
+    .worker-card:last-child { border-bottom: none; }
+    .worker-info { flex: 1; }
+    .worker-info h4 { margin: 0 0 4px; font-size: 16px; }
+    .worker-info p { margin: 0; font-size: 13px; color: #6c757d; }
+    .worker-actions { display: flex; gap: 6px; }
+    .action-btn {
+      padding: 8px 10px;
+      border: none; border-radius: 6px;
+      font-family: inherit; cursor: pointer;
+      font-size: 13px; font-weight: 600;
+    }
+    .btn-edit { background: #0d6efd; color: #fff; }
+    .btn-del { background: #dc3545; color: #fff; }
+
+    /* Modal */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 999;
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal {
+      background: #fff; border-radius: 14px;
+      padding: 22px; max-width: 400px; width: 100%;
+    }
+    .modal h3 { margin: 0 0 16px; font-size: 18px; }
+    .modal .field { margin-bottom: 12px; }
+    .modal .field label { display: block; font-size: 13px; color: #6c757d; margin-bottom: 5px; }
+    .modal .field input {
+      width: 100%; padding: 12px;
+      border: 1px solid #dce0e6; border-radius: 8px;
+      font-family: inherit; font-size: 15px;
+    }
+    .modal-btns { display: flex; gap: 10px; margin-top: 16px; }
+    .modal-btns button { flex: 1; padding: 12px; border: none; border-radius: 8px; font-family: inherit; cursor: pointer; font-size: 15px; font-weight: 600; }
+    .modal-cancel { background: #e9ecef; color: #1a1a1a; }
+    .modal-save { background: #0d6efd; color: #fff; }
+    .modal-del { background: #dc3545; color: #fff; }
+
+    .toast {
+      position: fixed; bottom: 30px; left: 50%;
+      transform: translateX(-50%);
+      background: #198754; color: #fff;
+      padding: 14px 24px; border-radius: 10px;
+      font-weight: 600; z-index: 9999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      font-family: inherit; font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div>
+      <a href="/app.html">← হোম</a>
+      <strong>কর্মী ব্যবস্থাপনা</strong>
+    </div>
+    <a href="#" id="logoutBtn" style="color:#fff; text-decoration:none; font-size:14px;">লগআউট</a>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h3 style="margin-top:0;">নতুন কর্মী যোগ করুন</h3>
+      <div class="form-row">
+        <input type="text" id="workerName" placeholder="কর্মীর নাম" required />
+      </div>
+      <div class="form-row">
+        <input type="text" id="workerCode" placeholder="কোড (যেমন: W-001)" required />
+      </div>
+      <div class="form-row">
+        <input type="number" id="workerRate" placeholder="পিস রেট (৳)" value="15" required />
+      </div>
+      <div class="form-row">
+        <input type="text" id="workerPhone" placeholder="ফোন নম্বর (8801XXXXXXXXX)" />
+      </div>
+      <button class="btn" id="addWorkerBtn">কর্মী যোগ করুন</button>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">সব কর্মী (<span id="workerCount">0</span> জন)</h3>
+      <div id="workerList">
+        <p style="text-align:center;color:#6c757d;">লোড হচ্ছে...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal">
+      <h3>✏️ কর্মী এডিট করুন</h3>
+      <div class="field">
+        <label>নাম</label>
+        <input type="text" id="editName" />
+      </div>
+      <div class="field">
+        <label>কোড</label>
+        <input type="text" id="editCode" />
+      </div>
+      <div class="field">
+        <label>পিস রেট (৳)</label>
+        <input type="number" id="editRate" />
+      </div>
+      <div class="field">
+        <label>ফোন (WhatsApp)</label>
+        <input type="text" id="editPhone" placeholder="8801XXXXXXXXX" />
+      </div>
+      <div class="modal-btns">
+        <button class="modal-cancel" id="editCancel">বাতিল</button>
+        <button class="modal-save" id="editSave">💾 সেভ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirm Modal -->
+  <div class="modal-overlay" id="deleteModal">
+    <div class="modal">
+      <h3>🗑️ কর্মী ডিলিট করুন</h3>
+      <p id="deleteText" style="font-size: 15px; color: #495057;"></p>
+      <p style="font-size: 13px; color: #dc3545;">⚠️ এই কর্মীর সব production entry এবং advance ডিলিট হয়ে যাবে।</p>
+      <div class="modal-btns">
+        <button class="modal-cancel" id="delCancel">বাতিল</button>
+        <button class="modal-del" id="delConfirm">ডিলিট</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/js/workers.js"></script>
+</body>
+</html>

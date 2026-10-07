@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>সেটিংস — Finroxa Gloves</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    body { background: #f0f2f5; }
+    .topbar { background: #0d6efd; color: #fff; padding: 14px; display: flex; justify-content: space-between; align-items: center; }
+    .topbar a { color: #fff; text-decoration: none; font-size: 14px; margin-right: 15px; }
+    .container { padding: 16px; max-width: 720px; margin: 0 auto; }
+    .card { background: #fff; border-radius: 14px; padding: 18px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .card h3 { margin: 0 0 14px; font-size: 17px; }
+
+    .info { background: #e7f1ff; padding: 12px 14px; border-radius: 8px; font-size: 13px; color: #0a58ca; margin-bottom: 14px; }
+
+    #sigCanvas {
+      border: 2px dashed #0d6efd;
+      border-radius: 10px;
+      width: 100%;
+      height: 200px;
+      background: #f8faff;
+      touch-action: none;
+      cursor: crosshair;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .btn-row { display: flex; gap: 10px; }
+    .btn { flex: 1; padding: 14px; border: none; border-radius: 10px; font-family: inherit; cursor: pointer; font-size: 15px; font-weight: 600; }
+    .btn-primary { background: #0d6efd; color: #fff; }
+    .btn-danger { background: #dc3545; color: #fff; }
+    .btn-success { background: #198754; color: #fff; }
+    .btn:disabled { opacity: 0.5; }
+
+    .sig-preview {
+      text-align: center;
+      padding: 14px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background: #fbfcfe;
+    }
+    .sig-preview img {
+      max-width: 200px;
+      max-height: 100px;
+    }
+    .sig-preview .empty-text {
+      color: #6c757d;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div>
+      <a href="/app.html">← হোম</a>
+      <strong>সেটিংস</strong>
+    </div>
+    <a href="#" id="logoutBtn" style="color:#fff; text-decoration:none; font-size:14px;">লগআউট</a>
+  </div>
+
+  <div class="container">
+
+    <div class="card">
+      <h3>✍️ ম্যানেজারের সিগনেচার</h3>
+      <div class="info">
+        💡 নিচের সাদা বক্সে আঙুল বা মাউস দিয়ে সই করুন। সেভ করলে প্রতিটি পেমেন্ট স্লিপে অটোমেটিক বসে যাবে।
+      </div>
+
+      <div class="sig-preview" id="sigPreview">
+        <div class="empty-text">এখনো সিগনেচার সেভ করা হয়নি</div>
+      </div>
+
+      <canvas id="sigCanvas"></canvas>
+
+      <div class="btn-row">
+        <button class="btn btn-danger" id="clearBtn">🧹 মুছুন</button>
+        <button class="btn btn-success" id="saveBtn">💾 সেভ করুন</button>
+      </div>
+
+      <div class="btn-row" style="margin-top: 10px;">
+        <button class="btn btn-primary" id="deleteBtn">🗑️ সিগনেচার মুছুন</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📱 WhatsApp সেটিংস</h3>
+      <div class="info">
+        কর্মীর ফোন নম্বর দিয়ে স্লিপ WhatsApp-এ পাঠানো যাবে। নম্বর ফরম্যাট: <strong>8801XXXXXXXXX</strong> (দেশের কোড সহ, + ছাড়া)
+      </div>
+      <p style="font-size: 14px; color: #6c757d;">
+        কর্মীর ফোন নম্বর দিতে যান <a href="/workers.html">কর্মী পেজে</a> → প্রতিটি কর্মী এডিট করুন।
+      </p>
+    </div>
+
+  </div>
+
+  <script type="module" src="/js/settings.js"></script>
+</body>
+</html>
