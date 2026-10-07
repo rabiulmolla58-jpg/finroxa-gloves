@@ -6,11 +6,13 @@ if (!session) { location.href = '/index.html'; }
 async function loadCards() {
   const gridEl = document.getElementById('cardsGrid');
 
+  // কারখানার নাম
   const { data: user } = await supabase
     .from('users').select('tenants(name)')
     .eq('id', session.user.id).maybeSingle();
   const factoryName = user?.tenants?.name || 'Finroxa Gloves';
 
+  // সব কর্মী
   const { data: workers, error } = await supabase
     .from('workers')
     .select('id, name, code, base_rate')
@@ -40,14 +42,13 @@ async function loadCards() {
     `;
     gridEl.appendChild(card);
 
-    // QR তৈরি (নতুন লাইব্রেরি দিয়ে)
-    new QRCode(document.getElementById(`qr-${w.id}`), {
-      text: w.code,
-      width: 130,
-      height: 130,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.H
+    // QR তৈরি
+    QRCode.toCanvas(w.code, { width: 130, margin: 1 }, (err, canvas) => {
+      if (!err) {
+        document.getElementById(`qr-${w.id}`).appendChild(canvas);
+      } else {
+        console.error('QR error:', err);
+      }
     });
   });
 }
